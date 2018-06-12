@@ -1,19 +1,32 @@
 import React, {Component} from 'react'
 
-import ClickbaitContent from './ClickbaitContent'
+import Orc from './Orc';
+import Mountain from './Mountain';
+import Gold from './Gold';
+import Hobbit from './Hobbit';
 
 class Clickbait extends Component {
+    constructor(props){
+        super(props)
+        const objArray = []
+        objArray.push(<Orc/>)
+        objArray.push(<Mountain/>)
+        objArray.push(<Gold/>)
+        objArray.push(<Hobbit/>)
+
+        this.state = {objArray}
+      }
+
     render() {
         return (
           <div className="small-12 columns other-articles">
             <h2>From around the Realm</h2>
-            <div className="small-6 medium-3 columns other-article">
-                {this.state.captions.map(caption => <ClickbaitContent name={caption}/>)}
-                {this.state.articles.map(article => <ClickbaitContent links={article}/>)}
-                {this.state.imgSrcs.map(imgSrc => <ClickbaitContent srcs={imgSrc}/>)}
-                {this.state.imgAlts.map(imgAlt => <ClickbaitContent alts={imgAlt}/>)}
+               {this.state.objArray.map((obj, index) => (
+                  <div key={index}>
+                    {obj}
+                  </div>
+               ))}
             </div>
-          </div>
         );
     }
 }
